@@ -70,10 +70,25 @@ public class FillGrid
     // returns the number of squares filled
     private void fillRegion( Location l, Color colNew, Color colOld )
     {
-        Color pointer = grid[l.row][l.col];
-        if (pointer.equals(colOld))
-        grid[l.row][l.col] = colNew;
+        //if this is already the right color, then do nothing
+        //if this is the old color, then change it and find children
+        //otherwise do nothing
 
+        //so only if this is the old color do we need to do anything
+        //  change this color.
+        //  find children.
+        if (grid[l.row][l.col].equals(colNew))
+            return;
+
+        System.out.println(l);
+        if (grid[l.row][l.col].equals(colOld)) {
+            grid[l.row][l.col] = colNew;
+            for (int dir : new int[] {0, 1, 2, 3} ) {
+                Location child = l.getNeighbor(dir);
+                if (!notInGrid(child))
+                    fillRegion(l.getNeighbor(dir), colNew, colOld);
+            }
+        }
     }
 
     // fillRegion

@@ -53,7 +53,7 @@ public class FillGridView extends DefaultControl<FillGrid> implements View<FillG
         int row = (int)(me.getY() * m.getNumRows() / height);
         int col = (int)(me.getX() * m.getNumCols() / width );
         Location l = new Location( row, col );
-        
+//        System.out.println("handling: " + l);
         if ( fill != null )
         {            
             System.out.println( m.fillRegion( l, fill ) );
